@@ -5,7 +5,9 @@ from ..observation_models import odometry_observation_model, odometry_observatio
 
 class KalmanFilter:
 
-    def __init__(self, initial_state, initial_covariance, proc_noise_std = [0.02, 0.02, 0.01], obs_noise_std = [0.02, 0.02, 0.01]):
+    def __init__(self, initial_state, initial_covariance, proc_noise_std = [0.02, 0.02, 0.01], obs_noise_std = [0.02, 0.02, 0.01]): # Ruido bajo
+    # def __init__(self, initial_state, initial_covariance, proc_noise_std = [0.02, 0.02, 0.01], obs_noise_std = [0.5, 0.5, 0.2]): # Ruido alto en la medición (Q grande)
+    # def __init__(self, initial_state, initial_covariance, proc_noise_std = [0.5, 0.5, 0.2], obs_noise_std = [0.02, 0.02, 0.01]): # Ruido alto en el proceso (R grande)
         self.mu = initial_state # Initial state estimate [x, y, theta]
         self.Sigma = initial_covariance # Initial uncertainty
 
@@ -46,7 +48,11 @@ class KalmanFilter:
 
 class KalmanFilter_2:
     def __init__(self, initial_state, initial_covariance,
-                 proc_noise_std=[0.02]*6, obs_noise_std=[0.02]*6):
+                 proc_noise_std=[0.02]*6, obs_noise_std=[0.02]*6): # Ruido bajo
+    # def __init__(self, initial_state, initial_covariance,
+    #              proc_noise_std=[0.02]*6, obs_noise_std=[0.5, 0.5, 0.2, 0.5, 0.5, 0.2]): # Ruido alto en la medición (Q grande)
+    # def __init__(self, initial_state, initial_covariance,
+    #              proc_noise_std=[0.5, 0.5, 0.2, 0.5, 0.5, 0.2], obs_noise_std=[0.02]*6): # Ruido alto en el proceso (R grande)
 
         self.mu = initial_state  # Initial state estimate [x, y, theta, vx, vy, omega]
         self.Sigma = initial_covariance  # Initial uncertainty
